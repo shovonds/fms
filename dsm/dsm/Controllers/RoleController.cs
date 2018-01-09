@@ -97,5 +97,23 @@ namespace dsm.Controllers
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
 
+
+        [HttpGet]
+        public JsonResult GetAppMenu()
+        {
+            string msg = "";
+            string uid = Session["userID"].ToString();
+            if (ModelState.IsValid)
+            {
+                string query = "select * from app_menu where menu_id in (select menu_id from role_menu where role_id in (select role_id from user_role where user_uid=@p0))";
+                var menuList = fe.Database.SqlQuery<app_menu>(query, uid).ToList();
+                return Json(menuList, JsonRequestBehavior.AllowGet);
+
+            }
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

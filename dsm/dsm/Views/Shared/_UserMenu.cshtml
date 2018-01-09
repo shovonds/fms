@@ -1,18 +1,7 @@
-﻿<li>
-    <a href="javascript:void(0);">
-        <i class="material-icons col-red">donut_large</i>
-        <span>Important</span>
+﻿<li ng-repeat="user_menu in userUiMenuList">
+    <a ng-href=@Url.Content("~/{{user_menu.action}}/{{user_menu.method}}/")>
+        <i class="material-icons">{{user_menu.icon}}</i>
+        <span>{{user_menu.menu_name}}</span>
     </a>
 </li>
-<li>
-    <a href="javascript:void(0);">
-        <i class="material-icons col-amber">donut_large</i>
-        <span>Warning</span>
-    </a>
-</li>
-<li>
-    <a href="javascript:void(0);">
-        <i class="material-icons col-light-blue">donut_large</i>
-        <span>Information</span>
-    </a>
-</li>
+

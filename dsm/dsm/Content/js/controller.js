@@ -227,6 +227,15 @@
 
         }
 
+        $scope.UiMenuList = function () {
+            console.log("hello");
+            $http.get('/Role/GetAppMenu').success(function (data) {
+                $scope.userUiMenuList = data;
+                
+            })
+        }
+
+
     }]);
 
 })();
