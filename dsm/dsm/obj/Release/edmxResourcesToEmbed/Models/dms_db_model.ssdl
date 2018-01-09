@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="app_menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu_name" Type="varchar" MaxLength="50" />
+    <Property Name="alias" Type="varchar" MaxLength="50" />
+    <Property Name="url" Type="varchar" MaxLength="50" />
+    <Property Name="action" Type="varchar" MaxLength="50" />
+    <Property Name="method" Type="varchar" MaxLength="50" />
+    <Property Name="parent_id" Type="int" />
+    <Property Name="icon" Type="varchar" MaxLength="255" />
+    <Property Name="tag" Type="text" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'fms.dbo.app_menu_roles' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="app_menu_roles">
+          <Property Name="id" Type="int" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" />
+          <Property Name="active" Type="char" MaxLength="1" />
+          <Property Name="description" Type="text" />
+        </EntityType>-->
+  <EntityType Name="directory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dir_id" Type="varchar" MaxLength="200" />
+    <Property Name="name" Type="nvarchar" MaxLength="150" />
+    <Property Name="parent_id" Type="varchar" MaxLength="200" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="deleted" Type="char" MaxLength="1" />
+    <Property Name="lastModify_date" Type="datetime" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="remarks" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="document">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="creation_date" Type="datetime" />
+    <Property Name="name" Type="nvarchar" MaxLength="255" />
+    <Property Name="dir_id" Type="varchar" MaxLength="200" />
+    <Property Name="modfy_date" Type="datetime" />
+    <Property Name="identity_1" Type="varchar" MaxLength="50" />
+    <Property Name="deleted" Type="char" MaxLength="1" />
+    <Property Name="type" Type="varchar" MaxLength="50" />
+    <Property Name="size" Type="int" />
+    <Property Name="location_id" Type="varchar" MaxLength="50" />
+    <Property Name="remarks" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="menu_access">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="menu_id" Type="int" />
+    <Property Name="roles_id" Type="int" />
+    <Property Name="free_field" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="role_menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_id" Type="varchar" MaxLength="150" />
+    <Property Name="menu_id" Type="int" />
+    <Property Name="menu_alias" Type="varchar" MaxLength="255" />
+    <Property Name="free_fld" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uid" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_date" Type="datetime" />
+    <Property Name="deleted" Type="char" MaxLength="1" />
+    <Property Name="enable" Type="char" MaxLength="1" />
+    <Property Name="expired" Type="char" MaxLength="1" />
+    <Property Name="fail_try" Type="int" />
+    <Property Name="locked" Type="char" MaxLength="1" />
+    <Property Name="modified_date" Type="datetime" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="reset_password" Type="char" MaxLength="1" />
+    <Property Name="username" Type="varchar" MaxLength="255" />
+    <Property Name="first_name" Type="varchar" MaxLength="255" />
+    <Property Name="last_name" Type="varchar" MaxLength="255" />
+    <Property Name="designation" Type="varchar" MaxLength="255" />
+    <Property Name="free_fld1" Type="varchar" MaxLength="100" />
+    <Property Name="free_fld2" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="user_directory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="varchar" MaxLength="255" />
+    <Property Name="user_name" Type="varchar" MaxLength="255" />
+    <Property Name="dir_id" Type="varchar" MaxLength="200" />
+    <Property Name="remarks" Type="varchar" MaxLength="150" />
+    <Property Name="active" Type="char" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'fms.dbo.user_roles' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="user_roles">
+          <Property Name="id" Type="int" />
+          <Property Name="user_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="role_id" Type="int" />
+        </EntityType>-->
+  <EntityContainer Name="fmsModelStoreContainer">
+    <EntitySet Name="app_menu" EntityType="Self.app_menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="directory" EntityType="Self.directory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="document" EntityType="Self.document" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="menu_access" EntityType="Self.menu_access" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role_menu" EntityType="Self.role_menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_directory" EntityType="Self.user_directory" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

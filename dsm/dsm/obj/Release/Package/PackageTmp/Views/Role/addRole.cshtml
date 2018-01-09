@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "addRole";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<!-- Basic Validation -->
+<div class="row clearfix" ng-init="allMenuList()">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>ADD NEW ROLE</h2>
+                <!--    <ul class="header-dropdown m-r--5">
+                       <li class="dropdown">
+                           <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                               <i class="material-icons">more_vert</i>
+                           </a>
+                           <ul class="dropdown-menu pull-right">
+                               <li><a href="javascript:void(0);">Action</a></li>
+                               <li><a href="javascript:void(0);">Another action</a></li>
+                               <li><a href="javascript:void(0);">Something else here</a></li>
+                           </ul>
+                       </li>
+                   </ul> -->
+            </div>
+            <div class="body">
+                <form id="form_validation" method="POST">
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="name" required>
+                            <label class="form-label">Name</label>
+                        </div>
+                    </div>
+                    <div class="form-group form-float">
+                        <div class="form-line">
+                            <textarea name="description" cols="30" rows="5" class="form-control no-resize" required></textarea>
+                            <label class="form-label">Description</label>
+                        </div>
+                    </div>
+                    <h2 class="card-inside-title">Access level</h2>
+                    <div class="form-group">
+                        <ul class="list-group" ng-repeat="Mymenu in menuListAll">
+                            <li class="list-group-item">
+                                    <input type="checkbox" id="{{Mymenu.menu_id}}" name="checkbox" ng-model="Mymenu.Selected">
+                                    <label for="{{Mymenu.menu_id}}">{{Mymenu.menu_name}}</label>
+                            </li>                         
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-primary waves-effect" type="submit" ng-click="saveRoleAccess(2)">{{menusave}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

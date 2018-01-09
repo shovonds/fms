@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fmsModelStoreContainer" CdmEntityContainer="fmsEntities">
+    <EntitySetMapping Name="app_menu">
+      <EntityTypeMapping TypeName="fmsModel.app_menu">
+        <MappingFragment StoreEntitySet="app_menu">
+          <ScalarProperty Name="tag" ColumnName="tag" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="method" ColumnName="method" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="menu_access">
+      <EntityTypeMapping TypeName="fmsModel.menu_access">
+        <MappingFragment StoreEntitySet="menu_access">
+          <ScalarProperty Name="free_field" ColumnName="free_field" />
+          <ScalarProperty Name="roles_id" ColumnName="roles_id" />
+          <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="fmsModel.role">
+        <MappingFragment StoreEntitySet="role">
+          <ScalarProperty Name="free_field" ColumnName="free_field" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="role1" ColumnName="role" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="fmsModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="free_fld2" ColumnName="free_fld2" />
+          <ScalarProperty Name="free_fld1" ColumnName="free_fld1" />
+          <ScalarProperty Name="designation" ColumnName="designation" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="reset_password" ColumnName="reset_password" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+          <ScalarProperty Name="locked" ColumnName="locked" />
+          <ScalarProperty Name="fail_try" ColumnName="fail_try" />
+          <ScalarProperty Name="expired" ColumnName="expired" />
+          <ScalarProperty Name="enable" ColumnName="enable" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="directories">
+      <EntityTypeMapping TypeName="fmsModel.directory">
+        <MappingFragment StoreEntitySet="directory">
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="lastModify_date" ColumnName="lastModify_date" />
+          <ScalarProperty Name="deleted" ColumnName="deleted" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="dir_id" ColumnName="dir_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

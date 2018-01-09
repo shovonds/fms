@@ -1,0 +1,76 @@
+﻿<li class="active">
+    <a id="storage" href="@Url.Action("MyStorage","Directory")">
+        <i class="material-icons">archive</i>
+        <span>My Storage</span>
+    </a>
+</li>
+
+
+
+@*<li>
+    <a href="javascript:void(0);" class="menu-toggle">
+        <i class="material-icons">map</i>
+        <span>Maps</span>
+    </a>
+    <ul class="ml-menu">
+        <li>
+            <a href="" class="menu-toggle">Google Map</a>
+        </li>
+        <li>
+            <a href="../../../pages/maps/yandex.html">YandexMap</a>
+        </li>
+        <li>
+            <a href="../../../pages/maps/jvectormap.html">jVectorMap</a>
+        </li>
+    </ul>
+</li>
+
+<li ng-repeat="newDirList in DirList | filter: { parent_id: null }">
+        <a href="javascript:void(0);" class="menu-toggle"> 
+            <i class="material-icons">folder</i>
+            <span>{{newDirList.name}}</span>
+        </a>
+    <ul class="ml-menu">
+        <li>
+            <a href="javascript:void(0);">
+                <i class="material-icons">folder</i>
+                <span>Folder</span>
+            </a>
+        </li>
+    </ul>
+
+</li>*@
+
+
+
+<div data-angular-treeview="false"
+     data-tree-id="mytree"
+     data-tree-model="TreeList"
+     data-node-id="dir_id"
+     data-node-label="name" ng-click="fileGetList(mytree.currentNode.dir_id)"
+     data-node-children="child"
+     data-search-query='treeSearchQuery'>
+</div>
+
+
+
+
+
+
+
+    @*<li id="list" ng-repeat="newDirList in DirList | filter: { parent_id: null }" data-toggle="collapse" data-target="#{{newDirList.dir_id}}">
+            <a href="javascript:void(0);">
+                <i class="material-icons">folder</i>
+                <span>{{newDirList.name}}</span>
+            </a>
+            <ul id="{{newDirList.dir_id}}" class="nav collapse" aria-labelledby="list">
+                <li>
+                    <a href="pages/widgets/cards/basic.html">Basic</a>
+                </li>
+            </ul>
+        </li>*@
+
+    @*@Url.Content("~/Directory/MyStorage/"){{newDirList.dir_id}}*@
+
+
+

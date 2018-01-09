@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="app_menu">
+    <Key>
+      <PropertyRef Name="menu_id" />
+    </Key>
+    <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parent_id" Type="Int32" />
+    <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="directory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dir_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="parent_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="lastModify_date" Type="DateTime" Precision="3" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="menu_access">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="menu_id" Type="Int32" />
+    <Property Name="roles_id" Type="Int32" />
+    <Property Name="free_field" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="created_date" Type="DateTime" Precision="3" />
+    <Property Name="deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="enable" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="expired" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="fail_try" Type="Int32" />
+    <Property Name="locked" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="modified_date" Type="DateTime" Precision="3" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="reset_password" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="designation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="free_fld1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="free_fld2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="fmsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="app_menu" EntityType="Self.app_menu" />
+    <EntitySet Name="directories" EntityType="Self.directory" />
+    <EntitySet Name="menu_access" EntityType="Self.menu_access" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <EntitySet Name="user_directory" EntityType="fmsModel.user_directory" />
+    <EntitySet Name="documents" EntityType="fmsModel.document" />
+    <EntitySet Name="role_menu" EntityType="fmsModel.role_menu" />
+    <EntitySet Name="roles" EntityType="fmsModel.role" />
+  </EntityContainer>
+  <EntityType Name="user_directory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="dir_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="document">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="creation_date" Type="DateTime" Precision="3" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="dir_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="modfy_date" Type="DateTime" Precision="3" />
+    <Property Name="identity_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="size" Type="Int32" />
+    <Property Name="location_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="remarks" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="role_menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="menu_id" Type="Int32" />
+    <Property Name="menu_alias" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="free_fld" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="is_active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="free_field" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

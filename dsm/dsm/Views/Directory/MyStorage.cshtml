@@ -1,0 +1,180 @@
+﻿
+@{
+    ViewBag.Title = "MyStorage";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<script>
+    GetTreeDir();
+</script>
+
+<div class="row clearfix" ng-init="getTreeDir()">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    {{mytree.currentNode.name}}
+                    <small>File list of {{mytree.currentNode.name}} folder</small>
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">storage</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#defaultModal">
+                                    <i class="material-icons">create_new_folder</i>
+                                    <span>New Folder</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#fileUpModal">
+                                    <i class="material-icons">file_upload</i>
+                                    <span>Upload File</span>
+                                </a>
+                            </li>
+
+
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#defaultModal">
+                                    <i class="material-icons">delete</i>
+                                    <span>Delete</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#defaultModal">
+                                    <i class="material-icons">edit</i>
+                                    <span>Rename</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#defaultModal">
+                                    <i class="material-icons">indeterminate_check_box</i>
+                                    <span>Properties</span>
+                                </a>
+                            </li>
+
+                            @*<li><a href="javascript:void(0);">Another action</a></li>
+                                <li><a href="javascript:void(0);">Something else here</a></li>*@
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <h2 class="card-inside-title">Files</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>Type</th>
+                                <th>Size</th>
+                                <th>Upload Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="fList in newFileList">
+                                <td>{{fList.name}}</td>
+                                <td>{{fList.type}}</td>
+                                <td>{{(fList.size)/1024}}</td>
+                                <td>{{fList.creation_date.replace('/Date(','').replace(')/','') | date:"MM/dd/yyyy hh:mm"}}</td>
+                                <td>View</td>
+                                <td>Delete</td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- New Folder -->
+            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">New Folder</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <form name="myFolder">
+                                                <input type="text" class="form-control" placeholder="Folder Name" ng-model="newFolder.name" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect" ng-click="myFolder.$valid&&saveFolder(mytree.currentNode.dir_id)">{{submit}}</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- file upload modal -->
+            <div class="modal fade" id="fileUpModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Select file for upload</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <form name="myFolder">
+                                                <input type="file" class="form-control" id="file" name="file" multiple onchange="angular.element(this).scope().setFile(this)" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Size</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="file in fileList">
+
+                                                    <td>{{file.file.name}}</td>
+                                                    <td>{{file.file.size}}</td>
+                                                    <td>{{file.file.type}}</td>
+                                                    <td>
+                                                        <div id="{{'P'+$index}}">
+
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect" ng-click="UploadFile(mytree.currentNode.dir_id)">UPLOAD</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

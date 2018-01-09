@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="fmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="app_menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_name" Type="varchar" MaxLength="50" />
+          <Property Name="alias" Type="varchar" MaxLength="50" />
+          <Property Name="url" Type="varchar" MaxLength="50" />
+          <Property Name="action" Type="varchar" MaxLength="50" />
+          <Property Name="method" Type="varchar" MaxLength="50" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="icon" Type="varchar" MaxLength="255" />
+          <Property Name="tag" Type="text" />
+        </EntityType>
+        <EntityType Name="directory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dir_id" Type="varchar" MaxLength="200" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" />
+          <Property Name="parent_id" Type="varchar" MaxLength="200" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="deleted" Type="char" MaxLength="1" />
+          <Property Name="lastModify_date" Type="datetime" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="remarks" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="dir_id" Type="varchar" MaxLength="200" />
+          <Property Name="modfy_date" Type="datetime" />
+          <Property Name="identity_1" Type="varchar" MaxLength="50" />
+          <Property Name="deleted" Type="char" MaxLength="1" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="size" Type="int" />
+          <Property Name="location_id" Type="varchar" MaxLength="50" />
+          <Property Name="remarks" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="menu_access">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu_id" Type="int" />
+          <Property Name="roles_id" Type="int" />
+          <Property Name="free_field" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" />
+          <Property Name="role_id" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="text" />
+          <Property Name="is_active" Type="char" MaxLength="1" />
+          <Property Name="free_field" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="role_menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_id" Type="varchar" MaxLength="150" />
+          <Property Name="menu_id" Type="int" />
+          <Property Name="menu_alias" Type="varchar" MaxLength="255" />
+          <Property Name="free_fld" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uid" Type="nvarchar" MaxLength="50" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="deleted" Type="char" MaxLength="1" />
+          <Property Name="enable" Type="char" MaxLength="1" />
+          <Property Name="expired" Type="char" MaxLength="1" />
+          <Property Name="fail_try" Type="int" />
+          <Property Name="locked" Type="char" MaxLength="1" />
+          <Property Name="modified_date" Type="datetime" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="reset_password" Type="char" MaxLength="1" />
+          <Property Name="username" Type="varchar" MaxLength="255" />
+          <Property Name="first_name" Type="varchar" MaxLength="255" />
+          <Property Name="last_name" Type="varchar" MaxLength="255" />
+          <Property Name="designation" Type="varchar" MaxLength="255" />
+          <Property Name="free_fld1" Type="varchar" MaxLength="100" />
+          <Property Name="free_fld2" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="user_directory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="varchar" MaxLength="255" />
+          <Property Name="user_name" Type="varchar" MaxLength="255" />
+          <Property Name="dir_id" Type="varchar" MaxLength="200" />
+          <Property Name="remarks" Type="varchar" MaxLength="150" />
+          <Property Name="active" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityContainer Name="fmsModelStoreContainer">
+          <EntitySet Name="app_menu" EntityType="Self.app_menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="directory" EntityType="Self.directory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="document" EntityType="Self.document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu_access" EntityType="Self.menu_access" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role_menu" EntityType="Self.role_menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_directory" EntityType="Self.user_directory" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="app_menu">
+          <Key>
+            <PropertyRef Name="menu_id" />
+          </Key>
+          <Property Name="menu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="alias" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="method" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parent_id" Type="Int32" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tag" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="directory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dir_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="parent_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="lastModify_date" Type="DateTime" Precision="3" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="menu_access">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu_id" Type="Int32" />
+          <Property Name="roles_id" Type="Int32" />
+          <Property Name="free_field" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created_date" Type="DateTime" Precision="3" />
+          <Property Name="deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="enable" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="expired" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fail_try" Type="Int32" />
+          <Property Name="locked" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="modified_date" Type="DateTime" Precision="3" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="reset_password" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="designation" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="free_fld1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="free_fld2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="fmsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="app_menu" EntityType="Self.app_menu" />
+          <EntitySet Name="directories" EntityType="Self.directory" />
+          <EntitySet Name="menu_access" EntityType="Self.menu_access" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="user_directory" EntityType="fmsModel.user_directory" />
+          <EntitySet Name="documents" EntityType="fmsModel.document" />
+          <EntitySet Name="role_menu" EntityType="fmsModel.role_menu" />
+          <EntitySet Name="roles" EntityType="fmsModel.role" />
+        </EntityContainer>
+        <EntityType Name="user_directory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="user_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dir_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="document">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="dir_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="modfy_date" Type="DateTime" Precision="3" />
+          <Property Name="identity_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleted" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="location_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="role_menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_id" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="menu_id" Type="Int32" />
+          <Property Name="menu_alias" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="free_fld" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="role_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="is_active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="free_field" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fmsModelStoreContainer" CdmEntityContainer="fmsEntities">
+          <EntitySetMapping Name="app_menu">
+            <EntityTypeMapping TypeName="fmsModel.app_menu">
+              <MappingFragment StoreEntitySet="app_menu">
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="menu_name" ColumnName="menu_name" />
+                <ScalarProperty Name="alias" ColumnName="alias" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="method" ColumnName="method" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="tag" ColumnName="tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="directories">
+            <EntityTypeMapping TypeName="fmsModel.directory">
+              <MappingFragment StoreEntitySet="directory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dir_id" ColumnName="dir_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="lastModify_date" ColumnName="lastModify_date" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu_access">
+            <EntityTypeMapping TypeName="fmsModel.menu_access">
+              <MappingFragment StoreEntitySet="menu_access">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="roles_id" ColumnName="roles_id" />
+                <ScalarProperty Name="free_field" ColumnName="free_field" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="fmsModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="enable" ColumnName="enable" />
+                <ScalarProperty Name="expired" ColumnName="expired" />
+                <ScalarProperty Name="fail_try" ColumnName="fail_try" />
+                <ScalarProperty Name="locked" ColumnName="locked" />
+                <ScalarProperty Name="modified_date" ColumnName="modified_date" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="reset_password" ColumnName="reset_password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="free_fld1" ColumnName="free_fld1" />
+                <ScalarProperty Name="free_fld2" ColumnName="free_fld2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_directory">
+            <EntityTypeMapping TypeName="fmsModel.user_directory">
+              <MappingFragment StoreEntitySet="user_directory">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="dir_id" ColumnName="dir_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documents">
+            <EntityTypeMapping TypeName="fmsModel.document">
+              <MappingFragment StoreEntitySet="document">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="identity_1" ColumnName="identity_1" />
+                <ScalarProperty Name="modfy_date" ColumnName="modfy_date" />
+                <ScalarProperty Name="dir_id" ColumnName="dir_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role_menu">
+            <EntityTypeMapping TypeName="fmsModel.role_menu">
+              <MappingFragment StoreEntitySet="role_menu">
+                <ScalarProperty Name="free_fld" ColumnName="free_fld" />
+                <ScalarProperty Name="menu_alias" ColumnName="menu_alias" />
+                <ScalarProperty Name="menu_id" ColumnName="menu_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="fmsModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="free_field" ColumnName="free_field" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
