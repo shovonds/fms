@@ -180,10 +180,12 @@
     <Content Include="Content\img\folder_.png" />
     <Content Include="Content\js\abn_tree_directive.js" />
     <Content Include="Content\js\admin.js" />
+    <Content Include="Content\js\advanced-form-elements.js" />
     <Content Include="Content\js\angular-tree-widget.js" />
     <Content Include="Content\js\angular.js" />
     <Content Include="Content\js\angular.treeview.js" />
     <Content Include="Content\js\app.js" />
+    <Content Include="Content\js\basic-form-elements.js" />
     <Content Include="Content\js\controller.js" />
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\helpers.js" />

@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-init="allMenuList()">
         <div class="card">
             <div class="header">
                 <h2>
@@ -34,6 +34,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <div class="form-line">
@@ -43,9 +44,19 @@
                         </div>
                     </div>
                     <div class="row clearfix">
-                        <div class="col-xs-4">
+                        <div class="col-md-3">
+                            <p>
+                                <b>User Role</b>
+                            </p>
+                            <select class="form-control show-tick" ng-options="menu.menu_name for menu in menuListAll" ng-model="sel">
+                                <option value="" disabled selected>Select Role</option>
+                            </select> 
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                    <button class="btn btn-primary waves-effect" type="submit" ng-click="newUser.$valid&&addUser()">SAVE</button>
+                                <button class="btn btn-primary waves-effect" type="submit" ng-click="newUser.$valid&&addUser()">SAVE</button>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -58,6 +69,8 @@
             </div>
         </div>
     </div>
-</div>
+
+
+
 
 
